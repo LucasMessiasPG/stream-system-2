@@ -3,10 +3,10 @@ import { Player } from "@/types/player.type";
 export function BuildPlayer (): Player {
     const id = Math.floor(Math.random() * 100000);
     return {
-        name: `player-${id}`,
-        nickname: `nick-${id}`,
-        history: `0-1-0`,
-        county: `US`,
+        name: ``,
+        nickname: ``,
+        history: `0-0-0`,
+        county: ``,
         extra_info: `extra info`,
         flags: {
             energy: '1',

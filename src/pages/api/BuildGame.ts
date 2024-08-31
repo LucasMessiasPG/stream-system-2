@@ -20,8 +20,8 @@ export function BuildGame(data?: BuildGameData): GameData {
         },
         id: id ?? uuid(),
         prize: {
-            p1: 3,
-            p2: 3
+            p1: 6,
+            p2: 6
         },
         score: {
             p1: 0,
