@@ -74,8 +74,9 @@ export function FormPlayer({ gameId, game, socket, slug }: FormPlayerProps) {
             <div className='flex flex-col md:flex-row'>
                 <div className="flex pl-5 flex-col md:flex-row">
                     <span className='mt-1 mr-3'>Prêmios</span>
-                    {prizes.map(index => {
+                    {prizes.map((index, i) => {
                         return <Image
+                            key={i}
                             width={20}
                             alt='pokebal'
                             src={pokeball}

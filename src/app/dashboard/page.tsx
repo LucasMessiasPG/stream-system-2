@@ -16,13 +16,13 @@ import pokeball from '../public/img/pokeball.png'
 import Image from 'next/image'
 
 export default function Dashboard() {
+    const searchParams = useSearchParams()
     const socketRef = useRef<Socket>()
     const [game, setGame] = useState<GameData | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [search, setSearch] = useState<string>('')
     const [socket, setSocket] = useState<Socket>()
     const [cards, setCards] = useState<any[]>()
-    const searchParams = useSearchParams()
     const id = searchParams?.get('id')
     const router = useRouter()
     let interval: NodeJS.Timeout;

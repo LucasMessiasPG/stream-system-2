@@ -11,9 +11,9 @@ import { useSearchParams } from 'next/navigation'
 import Image from "next/image";
 
 export default function Scoreboard () {
+    const searchParams = useSearchParams()
     const socketRef = useRef<Socket>()
     const [game, setGame] = useState<GameData | null>(null)
-    const searchParams = useSearchParams()
     const id = searchParams?.get('id')
 
     useEffect(() => {

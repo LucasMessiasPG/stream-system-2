@@ -8,9 +8,9 @@ import { GameData } from "@/types/game.type";
 import { useSearchParams } from 'next/navigation'
 
 export default function Scoreboard () {
+    const searchParams = useSearchParams()
     const socketRef = useRef<Socket>()
     const [game, setGame] = useState<GameData | null>(null)
-    const searchParams = useSearchParams()
     const id = searchParams?.get('id')
 
     useEffect(() => {
