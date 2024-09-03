@@ -27,14 +27,14 @@ export default function ScoreboardPlayer({ player, prize, invert = false, tie }:
             <div className={`w-full mt-[-30px] ${!invert ? '' : ''}`}>
                 <div className={`flex  ${invert ? 'flex-row-reverse ml-44' : 'mr-44'}`}>
                     <div className={`w-full ${invert ? 'text-left ml-2' : 'text-right mr-2'}`}>
-                        <span className='text-md'>{player.county}</span>
+                        <span className='text-2xl'>{player.county}</span>
                     </div>
-                    <div className='min-w-20 text-center text-2xl'>
+                    <div className='min-w-32 text-center text-4xl'>
                         <span>{player.history}</span>
                     </div>
                     <div className={`text-center ${invert ? 'flex-row-reverse mr-2' : 'ml-2'}`}>
                         <span className={`inline-block mt-2 ${player.flags.vstar === '1' ? '' : 'grayscale'}`}>
-                            <Image height={30} src={VStar} alt='vesus' />
+                            <Image height={100} src={VStar} alt='vesus' />
                         </span>
                     </div>
                 </div>

@@ -16,6 +16,9 @@ const config: Config = {
       width: {
         800: '800px',
       },
+      fontFamily: {
+        custom: ['custom', 'serif'], 
+      },
     },
   },
   plugins: [],

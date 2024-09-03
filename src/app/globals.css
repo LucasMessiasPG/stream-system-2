@@ -16,6 +16,16 @@
   }
 }
 
+@layer base {
+  @font-face {
+    font-family: 'custom';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url(./public/font/Blank\ Place.otf) format('opentype');
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: transparent;

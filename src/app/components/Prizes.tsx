@@ -7,7 +7,7 @@ export default function Prizes({ doubleLost,  lives, invert = false }: { doubleL
         const prizes = []
         for(var i = 0; i < 6; i++) {
             prizes.push(
-                <div className={`border-4 mx-[1px] rounded-full px-0.5 py-0.5  ${ (doubleLost === '1' && i < 2) ? 'border-red-600' : ' border-transparent'}`} >
+                <div className={`border-4 mx-[1px] px-0.5 py-0.5  ${ (doubleLost === '1' && i < 2) ? 'bg-red-400 border-black' : ' border-transparent'}`} >
                     <Image
                         className={`${i < lives ? 'opacity-100':  'grayscale opacity-30'}`}
                         key={i}
