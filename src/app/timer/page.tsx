@@ -14,7 +14,7 @@ class LocalTimer {
 
     initialValue(value: number, offset: number) {
         let diff = new Date().getTime() - new Date(value).getTime();
-        this.current = (diff / 1000) + offset;
+        this.current = Math.max((diff / 1000) + offset, 0);
     }
 
     start(cb?: any) {
