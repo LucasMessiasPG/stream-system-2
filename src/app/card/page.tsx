@@ -14,7 +14,7 @@ export default function Scoreboard () {
     const id = searchParams?.get('id')
 
     useEffect(() => {
-        document.title = "Card - StremSystem";
+        document.title = "Card - StreamSystem";
       }, []);
 
     useEffect(() => {

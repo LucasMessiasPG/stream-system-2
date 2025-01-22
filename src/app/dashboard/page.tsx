@@ -25,7 +25,7 @@ export default function Dashboard() {
     const id = searchParams?.get('id');
 
     useEffect(() => {
-        document.title = "Dash - StremSystem";
+        document.title = "Dash - StreamSystem";
       }, []);
 
     useEffect(() => {

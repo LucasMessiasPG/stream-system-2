@@ -56,7 +56,7 @@ export default function Scoreboard () {
     const localTimer = new LocalTimer();
 
     useEffect(() => {
-        document.title = "Timer - StremSystem";
+        document.title = "Timer - StreamSystem";
       }, []);
 
     useEffect(() => {
