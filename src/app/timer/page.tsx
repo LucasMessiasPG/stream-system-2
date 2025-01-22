@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Socket } from "socket.io-client";
 import { SocketClient } from "../services/socket-client";
 import { GameData } from "@/types/game.type";
-
 import { useSearchParams } from 'next/navigation'
 
 class LocalTimer {
@@ -55,6 +54,10 @@ export default function Scoreboard () {
     const [timer, setTimer] = useState<number>(0)
     const id = searchParams?.get('id')
     const localTimer = new LocalTimer();
+
+    useEffect(() => {
+        document.title = "Timer - StremSystem";
+      }, []);
 
     useEffect(() => {
         const controller = new AbortController();

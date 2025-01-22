@@ -1,7 +1,6 @@
 'use client'
 
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
-
 import type { Socket } from 'socket.io-client'
 import { SocketClient } from '@/app/services/socket-client'
 import CompleteLayout from '../components/CompleteLayout'
@@ -23,9 +22,12 @@ export default function Dashboard() {
     const [search, setSearch] = useState<string>('')
     const [socket, setSocket] = useState<Socket>()
     const [cards, setCards] = useState<any[]>()
-    const id = searchParams?.get('id')
-    const router = useRouter()
-    let interval: NodeJS.Timeout;
+    const id = searchParams?.get('id');
+
+    useEffect(() => {
+        document.title = "Dash - StremSystem";
+      }, []);
+
     useEffect(() => {
         const controller = new AbortController();
 

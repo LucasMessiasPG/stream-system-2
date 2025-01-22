@@ -14,6 +14,10 @@ export default function Scoreboard () {
     const id = searchParams?.get('id')
 
     useEffect(() => {
+        document.title = "Card - StremSystem";
+      }, []);
+
+    useEffect(() => {
         const controller = new AbortController();
         SocketClient(controller.signal)
             .then((socket: Socket) => {

@@ -14,7 +14,11 @@ export default function Scoreboard () {
     const searchParams = useSearchParams()
     const socketRef = useRef<Socket>()
     const [game, setGame] = useState<GameData | null>(null)
-    const id = searchParams?.get('id')
+    const id = searchParams?.get('id');
+
+    useEffect(() => {
+        document.title = "Score - StremSystem";
+      }, []);
 
     useEffect(() => {
         const controller = new AbortController();
