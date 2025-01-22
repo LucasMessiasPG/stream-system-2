@@ -22,6 +22,8 @@ export type GameData = {
     timer: {
         current: 0;
         status: 'idle' | 'running' | 'stoped';
+        startAt: Date | null
+        offset: number
     };
     flags : {
         tie: '1' | '0',

@@ -34,6 +34,8 @@ export function BuildGame(data?: BuildGameData): GameData {
         timer: {
             current: 0,
             status: 'idle',
+            startAt: null,
+            offset: 0,
         },
         flags: {
             tie: '0'

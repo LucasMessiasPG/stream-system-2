@@ -5,7 +5,7 @@ import type { Socket } from 'socket.io-client'
 export async function SocketClient(signal: AbortSignal) {
     await fetch("/api/socket", { signal });
 
-    const socket: Socket = io("http://35.168.149.178");
+    const socket: Socket = io(process.env.endpoint || "http://localhost:3000");
 
     socket.on("connect", () => {
         console.log("Connected, connection id is - ", socket.id);

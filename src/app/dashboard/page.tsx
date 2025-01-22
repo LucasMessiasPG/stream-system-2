@@ -37,17 +37,6 @@ export default function Dashboard() {
 
                 socket.on('game', (data: string) => {
                     const game = JSON.parse(data) as GameData;
-
-                    if (['running', 'stoped'].includes(game.timer.status)) {
-                        if (interval) clearInterval(interval);
-
-                        if (game.timer.status == 'running') {
-                            let countTime = game.timer.current
-                            interval = setInterval(() => {
-                                socket.emit('updateGame', `${id},timer.current,${++countTime}`)
-                            }, 1000)
-                        }
-                    }
                     setGame(game);
                 })
 
@@ -105,13 +94,13 @@ export default function Dashboard() {
                     <div className="bg-white rounded-lg ml-10 pt-5 mt-10 pb-10 border-2 border-gray-800">
                         <h4 className='ml-2 mb-5'>Timer</h4>
                         <button className={`mx-2 px-3 py-2 border-2 border-gray-200 mt-2 px-2 py-1 rounded-lg bg-white hover:bg-gray-200 ${game.timer.status === 'running' ? 'border-pink-800' : ''}`} onClick={() => {
-                            socket.emit('updateGame', `${id},timer.status,running`)
+                            socket.emit('statusTimer', `${id},running`)
                         }}>Start</button>
                         <button className={`mx-2 px-3 py-2 border-2 border-gray-200 mt-2 px-2 py-1 rounded-lg bg-white hover:bg-gray-200 ${game.timer.status === 'stoped' || game.timer.status === 'idle' ? 'border-pink-800' : ''}`} onClick={() => {
-                            socket.emit('updateGame', `${id},timer.status,stoped`)
+                            socket.emit('statusTimer', `${id},stoped`)
                         }}>Stop</button>
                         <button className={`mx-2 px-3 py-2 border-2 border-gray-200 mt-2 px-2 py-1 rounded-lg bg-white hover:bg-gray-200`} onClick={() => {
-                            socket.emit('updateGame', `${id},timer.current,0`)
+                            socket.emit('statusTimer', `${id},reset`)
                         }}>Reset</button>
                         <iframe className='w-[250px] h-[50px] pl-3 mt-5 h-10 bg-white m-auto border-2 border-gray-800' src={`/timer?id=${id}`} />
 

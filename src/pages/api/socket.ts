@@ -31,6 +31,7 @@ interface NextApiResponseWithSocket extends NextApiResponse {
 	socket: SocketWithIO;
 }
 
+process.setMaxListeners(120)
 
 let io: IOServer;
 const cache = new Cache<string, GameData>();
@@ -117,6 +118,38 @@ const SocketHandler = (req: NextApiRequest, res: NextApiResponseWithSocket) => {
 			io.to(id).emit('game', JSON.stringify(game))
 		})
 
+		socket.on('statusTimer', (field: string) => {
+			let [id, value] = field.split(',')
+			let game = cache.get(id);
+
+			if (value == 'running' && game && game.timer.status != 'running') {
+				game.timer.status = value
+				game.timer.startAt = new Date();
+			}
+
+			if (value == 'stoped' && game && game.timer.status != 'stoped') {
+				if (game.timer.status == 'running' && game.timer.startAt) {
+					let diff = new Date().getTime() - new Date(game.timer.startAt).getTime();
+        			game.timer.offset = Math.floor((diff / 1000)) + game.timer.offset;
+				}
+				game.timer.status = value
+			}
+
+			if (value == 'reset' && game) {
+				if (game.timer.status == 'running')
+					game.timer.startAt = new Date();
+			
+				if (game.timer.status == 'stoped')
+					game.timer.startAt = null;
+			}
+			if (game) {
+				cache.put(id, game, GAME_TIME)
+				io.to(id).emit('game', JSON.stringify(game))
+			}
+
+			io.to(id).emit('statusTimer', value)
+		}) 
+
 		socket.on('updateGame', (field: string) => {
 			let [id, key, value] = field.split(',')
 
@@ -152,7 +185,6 @@ const SocketHandler = (req: NextApiRequest, res: NextApiResponseWithSocket) => {
 				cache.put(id, game, GAME_TIME)
 				
 				const listKeyToBroadcast = [
-					'timer.current',
 					'image.url',
 				]
 	
